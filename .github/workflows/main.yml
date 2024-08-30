@@ -23,7 +23,7 @@ jobs:
       env: 
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       with:
-        status: ${(job.status}} 
+        status: ${{job.status}} 
         fields: repo,message,workflow,job,ref
         author_name: Github Action Slack 
 
