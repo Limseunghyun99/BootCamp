@@ -1,6 +1,12 @@
 --- 
 name: slack_webhook_basic
-on: workflow_dispatch 
+on: 
+  push:
+    branches:
+      - main
+permissions:
+  contents : read
+  
 jobs:
   build:  
     name: Build and Test 
@@ -10,20 +16,20 @@ jobs:
       actions: read 
     steps: 
     - name: Checkout 
-      uses: actions/checkout@v2 
+      uses: actions/checkout@v4
     - name: Build project 
       run: |
         echo "Build Project" 
     - name: Run tests
       run: |
         echo "Run Test" 
-    - name: Notice when a build finishes 
+    - name: action-slack
       if: always()
       uses: 8398a7/action-slack@v3.2.0
       env: 
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       with:
         status: ${{job.status}} 
-        fields: repo,message,workflow,job,ref
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
         author_name: Github Action Slack 
 
