@@ -15,9 +15,13 @@ class ArrayUtil:
         self.arr1 = arr1
         self.arr2 = arr2
 
+    def uniquify(self, arr):
+        return list(set(arr))
+
 
 if __name__ == '__main__':
     arr = ArrayUtil([1, 2, 3, 3, 4], [2, 3, 4])
     emptyArr = ArrayUtil()
     emptyArr.set([1, 2, 3, 3, 4], [2, 3, 4])
 
+    print(arr.uniquify([1, 2, 3, 3, 4]))
