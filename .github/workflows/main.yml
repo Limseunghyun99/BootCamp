@@ -32,4 +32,5 @@ jobs:
         status: ${{job.status}} 
         fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
         author_name: Github Action Slack 
+        message: ${{ github.event.head_commit.message }}
 
